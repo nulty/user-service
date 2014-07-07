@@ -1,4 +1,3 @@
-require 'active_record'
 require_relative '../client'
 
 describe "client" do
@@ -6,14 +5,29 @@ describe "client" do
     User.base_uri = "http://localhost:3000"
   end
 
-  it "should get a user" do
-    user = User.find_by_name("iain")
-    user["user"]["name"].should == "iain"
-    user["user"]["email"].should == "iain@iainmcnulty.com"
-    user["user"]["bio"].should == "rubyist"
+  describe "Finding a User" do
+
+    it "should get a user" do
+      user = User.find_by_name("iain")
+      user["user"]["name"].should  == "iain"
+      user["user"]["email"].should == "iain@iainmcnulty.com"
+      user["user"]["bio"].should   == "rubyist"
+    end
+
+    it "should return nil for a user not found" do
+      User.find_by_name("joe").should be_nil
+    end
   end
 
-  it "should return nil for a user not found" do
-    User.find_by_name("joe").should be_nil
+  describe "Creating a User" do
+    it "should create a user" do
+      user = User.create(
+            name: "trotter",
+            email: "no spam",
+            password: "whatev")
+      user["user"]["name"].should         == "trotter"
+      user["user"]["email"].should        == "no spam"
+      User.find_by_name("trotter").should == user
+    end
   end
 end
