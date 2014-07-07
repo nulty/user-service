@@ -30,4 +30,14 @@ describe "client" do
       User.find_by_name("trotter").should == user
     end
   end
+
+  describe "Updating a User" do
+    it "should update a user" do
+      user = User.update("iain",
+            bio: "rubyist and coffee drinker")
+      user["user"]["name"].should         == "iain"
+      user["user"]["bio"].should        == "rubyist and coffee drinker"
+      User.find_by_name("iain").should == user
+    end
+  end
 end
