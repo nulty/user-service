@@ -47,4 +47,15 @@ describe "client" do
       User.find_by_name("bryan").should be_nil
     end
   end
+
+  describe "Destroying a User" do
+    it "should verify login credentials" do
+      user = User.login("iain", "strongpass")
+      user["user"]["name"].should eq "iain"
+    end
+
+    it "should return nil with invalid credentials" do
+      User.login("iain", "wrongpass").should be_nil
+    end
+  end
 end

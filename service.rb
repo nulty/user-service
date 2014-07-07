@@ -14,6 +14,7 @@ if env == "test"
   puts "starting in test mode"
   User.destroy_all
   User.create(:name => "iain", :email => "iain@iainmcnulty.com",
+              password: "strongpass",
               :bio => "rubyist")
   User.create(:name => "bryan", :email => "no spam")
 end
