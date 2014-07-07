@@ -40,4 +40,11 @@ describe "client" do
       User.find_by_name("iain").should == user
     end
   end
+
+  describe "Destroying a User" do
+    it "should destroy a user" do
+      user = User.destroy("bryan").should == true
+      User.find_by_name("bryan").should be_nil
+    end
+  end
 end

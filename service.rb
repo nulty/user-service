@@ -15,6 +15,7 @@ if env == "test"
   User.destroy_all
   User.create(:name => "iain", :email => "iain@iainmcnulty.com",
               :bio => "rubyist")
+  User.create(:name => "bryan", :email => "no spam")
 end
 
 # HTTP entry points
